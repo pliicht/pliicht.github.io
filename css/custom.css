@@ -521,3 +521,39 @@ html[data-theme='dark'] .category-lists > .category-list > .category-list-item:n
 html[data-theme='dark'] .category-lists > .category-list > .category-list-item:not(:has(.category-list-child)):hover::after {
   opacity: 0.05;
 }
+
+/* ================================================= */
+/* 优化文章内部字体大小和行高 (Post Typography)       */
+/* ================================================= */
+
+/* 调整正文容器字体和行高 */
+#article-container {
+  font-size: 16px !important;
+  line-height: 2 !important;
+}
+h3 {
+  font-size: 20px !important;
+
+}
+h4 {
+  font-size: 18px !important;
+
+}
+/* 适配超大屏幕，让正文字体再稍微大一点 */
+/* @media screen and (min-width: 1600px) {
+  #article-container {
+    font-size: 17px !important;
+  }
+} */
+
+/* 调整段落之间的间距，让阅读呼吸感更强 */
+/* #article-container p {
+  margin: 0 0 16px 0 !important;
+} */
+
+/* 确保列表的字体大小和行高也一致 */
+#article-container ul,
+#article-container ol {
+  font-size: 16px !important;
+  line-height: 2 !important;
+}
