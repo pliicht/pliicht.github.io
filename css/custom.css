@@ -460,3 +460,64 @@ html[data-theme='dark'] .article-sort-item:not(.year):hover {
     font-size: 15px !important;
   }
 }
+
+/* ================================================= */
+/* 优化没有子分类的卡片 (Empty Child Categories)         */
+/* ================================================= */
+
+/* 当卡片没有子分类时，内容整体垂直居中，填补空缺感 */
+.category-lists > .category-list > .category-list-item:not(:has(.category-list-child)) {
+  justify-content: center;
+  overflow: hidden; /* 防止装饰图标溢出 */
+}
+
+/* 取消原有的 bottom margin，使其完美居中 */
+.category-lists > .category-list > .category-list-item:not(:has(.category-list-child)) > a.category-list-link {
+  margin-bottom: 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* 将右上角的文章篇数也下移到绝对垂直居中位置 */
+.category-lists > .category-list > .category-list-item:not(:has(.category-list-child)) > .category-list-count {
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+/* 修复悬浮时的交互：继承垂直居中，加入水平左移 */
+.category-lists > .category-list > .category-list-item:not(:has(.category-list-child)):hover > .category-list-count {
+  transform: translateY(-50%) translateX(-4px);
+}
+
+/* 添加一个巨大的半透明水印图标作为背景装饰，极大提升卡片质感 */
+.category-lists > .category-list > .category-list-item:not(:has(.category-list-child))::after {
+  content: '\f0c2'; /* 与标题一致的云朵图标 */
+  font-family: 'Font Awesome 5 Free', 'Font Awesome 6 Free';
+  font-weight: 900;
+  position: absolute;
+  right: -10px;
+  bottom: -20px;
+  font-size: 100px;
+  color: var(--categ-text-muted);
+  opacity: 0.04;
+  pointer-events: none;
+  transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+  z-index: 0;
+}
+
+/* 悬浮时水印图标的律动效果 */
+.category-lists > .category-list > .category-list-item:not(:has(.category-list-child)):hover::after {
+  transform: scale(1.1) rotate(-15deg);
+  opacity: 0.08;
+  color: var(--categ-accent);
+}
+
+/* 暗色模式下进一步微调不透明度 */
+html[data-theme='dark'] .category-lists > .category-list > .category-list-item:not(:has(.category-list-child))::after {
+  opacity: 0.02;
+}
+
+html[data-theme='dark'] .category-lists > .category-list > .category-list-item:not(:has(.category-list-child)):hover::after {
+  opacity: 0.05;
+}
